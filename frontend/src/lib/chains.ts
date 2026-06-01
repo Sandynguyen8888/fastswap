@@ -44,7 +44,7 @@ export const SUPPORTED_CHAINS: ChainConfig[] = [
     name: 'Arc Testnet',
     shortName: 'Arc',
     dotColor: '#ACC6E9',
-    cctpDomain: 99, // TBD — check docs.arc.network before deploying
+    cctpDomain: 26, // Confirmed — source: https://docs.arc.io/arc/references/contract-addresses
     cctpVersion: 'V2',
     supportsFast: true,
     explorerUrl: 'https://testnet.arcscan.app',

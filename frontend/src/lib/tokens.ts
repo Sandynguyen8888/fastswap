@@ -34,6 +34,13 @@ export const ARC_TOKENS: Token[] = [
     logoColor: '#F7931A',
   },
   {
+    address: '0xe9185F0c5F296Ed1797AaE4238D26CCaBEadb86C', // Arc official — USYC yield-bearing token
+    symbol: 'USYC',
+    name: 'US Yield Coin',
+    decimals: 6,
+    logoColor: '#10B981',
+  },
+  {
     address: '0x7b79995e5f793A07Bc00c21d5351D4B4F3b44B03', // placeholder — update khi có địa chỉ Arc Testnet
     symbol: 'WETH',
     name: 'Wrapped Ether',
@@ -54,6 +61,7 @@ export const TOKEN_PRICES: Record<string, number> = {
   USDC: 1.0,
   EURC: 1.08,
   cirBTC: 67000,
+  USYC: 1.05,
   WETH: 3200,
   USDT: 1.0,
 }
