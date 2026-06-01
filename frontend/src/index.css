@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'DM Sans', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-arc-bg-dark text-arc-text;
+    background: linear-gradient(180deg, #0D1B2F 0%, #0D1B2F 60%, #19354D 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(172, 198, 233, 0.2) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(172, 198, 233, 0.2);
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Glass card */
+  .glass-card {
+    @apply rounded-2xl border border-white/10;
+    background: rgba(31, 47, 68, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-card-inner {
+    @apply rounded-xl border border-white/5;
+    background: rgba(13, 27, 47, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Input field */
+  .arc-input {
+    @apply w-full bg-transparent text-arc-text placeholder-arc-text-subtle outline-none;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply w-full py-4 rounded-xl font-semibold text-white transition-all duration-200;
+    background: linear-gradient(135deg, #3E74BB 0%, #2d5a9b 100%);
+    box-shadow: 0 4px 16px rgba(62, 116, 187, 0.3);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #4a82cc 0%, #3669ae 100%);
+    box-shadow: 0 6px 20px rgba(62, 116, 187, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .btn-primary:disabled {
+    @apply opacity-40 cursor-not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply px-4 py-2 rounded-lg font-medium text-arc-text-subtle border border-white/10 transition-all duration-150;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .btn-secondary:hover {
+    @apply text-arc-text border-white/20;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Tab button */
+  .tab-btn {
+    @apply px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-200 text-arc-text-subtle;
+  }
+
+  .tab-btn.active {
+    @apply text-white;
+    background: linear-gradient(135deg, #3E74BB20 0%, #ACC6E910 100%);
+    border: 1px solid rgba(172, 198, 233, 0.2);
+    box-shadow: 0 0 16px rgba(62, 116, 187, 0.15);
+  }
+
+  .tab-btn:hover:not(.active) {
+    @apply text-arc-text;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* Token chip */
+  .token-chip {
+    @apply flex items-center gap-2 px-3 py-2 rounded-xl border border-white/10 font-semibold text-arc-text transition-all duration-150 cursor-pointer;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .token-chip:hover {
+    @apply border-arc-primary-light/30;
+    background: rgba(172, 198, 233, 0.08);
+  }
+
+  /* Speed toggle */
+  .speed-btn {
+    @apply flex-1 py-3 rounded-xl text-sm font-semibold transition-all duration-200 text-arc-text-subtle border border-white/5;
+  }
+
+  .speed-btn.active {
+    @apply text-white border-arc-primary/40;
+    background: linear-gradient(135deg, rgba(62,116,187,0.2) 0%, rgba(62,116,187,0.1) 100%);
+    box-shadow: 0 0 12px rgba(62, 116, 187, 0.2);
+  }
+
+  .speed-btn:hover:not(.active):not(:disabled) {
+    @apply border-white/10;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .speed-btn:disabled {
+    @apply opacity-30 cursor-not-allowed;
+  }
+
+  /* Slippage option */
+  .slippage-btn {
+    @apply px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 text-arc-text-subtle border border-white/5;
+  }
+
+  .slippage-btn.active {
+    @apply text-arc-primary-light border-arc-primary/50;
+    background: rgba(62, 116, 187, 0.15);
+  }
+
+  .slippage-btn:hover:not(.active) {
+    @apply text-arc-text;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Info row */
+  .info-row {
+    @apply flex items-center justify-between text-sm py-1;
+  }
+
+  .info-row-label {
+    @apply text-arc-text-subtle;
+  }
+
+  .info-row-value {
+    @apply text-arc-text font-medium;
+  }
+
+  /* Step indicator */
+  .step-dot {
+    @apply w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300;
+  }
+
+  .step-dot.pending {
+    @apply bg-white/10 text-arc-text-subtle border border-white/20;
+  }
+
+  .step-dot.active {
+    background: linear-gradient(135deg, #3E74BB, #ACC6E9);
+    @apply text-white shadow-lg;
+    box-shadow: 0 0 16px rgba(62, 116, 187, 0.5);
+  }
+
+  .step-dot.completed {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    @apply text-white;
+    animation: stepComplete 0.4s ease-out;
+  }
+
+  /* Price impact badges */
+  .impact-low {
+    @apply text-green-400 font-semibold;
+  }
+
+  .impact-medium {
+    @apply text-amber-400 font-semibold;
+  }
+
+  .impact-high {
+    @apply text-red-400 font-semibold;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #ACC6E9, #3E74BB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Modal overlay */
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.15s ease-out;
+  }
+
+  .modal-content {
+    @apply glass-card w-full max-w-md p-6 animate-slide-up;
+  }
+
+  /* Chain badge */
+  .cctp-badge {
+    @apply text-xs px-1.5 py-0.5 rounded-md font-bold;
+  }
+
+  .cctp-v2 {
+    background: rgba(62, 116, 187, 0.2);
+    @apply text-arc-primary-light border border-arc-primary/30;
+  }
+
+  .cctp-v1 {
+    background: rgba(255, 255, 255, 0.05);
+    @apply text-arc-text-subtle border border-white/10;
+  }
+}
+
+@layer utilities {
+  .text-gradient-arc {
+    background: linear-gradient(135deg, #ACC6E9 0%, #3E74BB 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
