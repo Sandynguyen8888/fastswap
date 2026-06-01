@@ -370,6 +370,13 @@ const result = await kit.bridge({
 - ✅ Luôn hiển thị txHash kèm link explorer sau khi confirmed
 - ✅ Cập nhật balance ngay sau khi tx confirmed (vì Arc < 1s)
 
+### Logo & Assets
+- ✅ Logo file gốc: `frontend/Logo.png` (FASTSWAP — nền đen, chữ trắng)
+- ✅ Logo đã xử lý: `frontend/public/logo.png` — nền transparent, recolor sang `#ACC6E9`
+- ✅ Xử lý bằng `jimp` (script `process-logo.cjs`) — pixel-by-pixel: alpha = brightness gốc, recolor sang arc-primary-light
+- ✅ Nếu cần tái tạo logo: chạy `node process-logo.cjs` trong `frontend/`
+- ✅ Logo hiển thị với `h-10` (40px) trong header, không dùng `mix-blend-mode`
+
 ---
 
 ## 10. Tài liệu tham khảo
@@ -401,6 +408,10 @@ npm install
 npm run dev          # dev server → http://localhost:5173
 npm run type-check   # kiểm tra TypeScript
 
+# Xử lý logo (nếu thay logo mới)
+cd frontend
+node process-logo.cjs   # xóa nền đen, recolor → public/logo.png
+
 # Contracts (Foundry)
 cd contracts
 forge build          # compile
@@ -410,6 +421,11 @@ forge deploy         # deploy lên Arc Testnet
 # Kiểm tra env
 cp frontend/.env.example frontend/.env
 # Điền các giá trị API key vào .env
+
+# Git
+git add .
+git commit -m "feat: ..."
+git push origin main
 ```
 
 ---
@@ -424,3 +440,20 @@ cp frontend/.env.example frontend/.env
 6. **Testnet first** — mọi feature đều test trên Arc Testnet trước
 7. **Arc Domain ID** — hiện tại là TBD, cần kiểm tra `docs.arc.network` trước khi deploy
 8. **Chain ID Arc** — `5042002` (đã xác nhận từ docs chính thức)
+
+---
+
+## 13. Git & GitHub
+
+```
+Remote: https://github.com/Sandynguyen8888/fastswap
+Branch: main
+Visibility: Public
+```
+
+### Bảo mật đã kiểm tra
+- ✅ File `.env` (API key thật) bị chặn bởi `.gitignore` — không bao giờ commit
+- ✅ Không có private key, mnemonic, hay secret hardcode trong source code
+- ✅ Tất cả secrets đọc qua `import.meta.env.VITE_*` — chỉ tồn tại trên máy local
+- ✅ Địa chỉ contract trong code là public on-chain addresses — không nhạy cảm
+- ✅ `.env.example` chỉ chứa tên biến, không có giá trị thật
